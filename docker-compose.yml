@@ -1,0 +1,23 @@
+services:
+  # Ton application Laravel
+  app:
+    build: .
+    ports:
+      - "8080:80" # Ton site sera sur http://localhost:8080
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laravel-network
+
+  # Ta base de données MySQL
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE} # Il va lire ton fichier .env
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge

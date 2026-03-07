@@ -11,6 +11,9 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # 3. Activation du module Rewrite d'Apache (indispensable pour les routes Laravel)
 RUN a2enmod rewrite
 
+# Installer Composer proprement dans l'image
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # 4. On définit le dossier de travail
 WORKDIR /var/www/html
 
