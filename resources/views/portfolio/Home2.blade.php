@@ -36,8 +36,8 @@
                         <button type="submit" class="nav-link">Logout</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
-                    <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a>
+                    {{-- <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+                    <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a> --}}
                 @endauth                        
             </div>
             <!-- Hamburger menu pour mobile -->
@@ -67,7 +67,7 @@
 
             <div class="hero-buttons">
             <!-- lien direct vers ton CV (PDF) -->
-            <a class="btn btn-primary" target="_blank" href="https://drive.google.com/file/d/1mA2k0gOmkoASggabQiGbFrHxa5KnnoCU/view?usp=sharing" download aria-label="Télécharger le CV de Sylla Youssouf">
+            <a class="btn btn-primary" target="_blank" href="https://drive.google.com/file/d/1PcR6cYPK84EICsSl4zzhgcmeJ7sJbkBd/view?usp=drive_link" download aria-label="Télécharger le CV de Sylla Youssouf">
                 <i class="fas fa-download"></i> Télécharger mon CV
             </a>
             <a class="btn btn-secondary" href="#contact"><i class="fas fa-envelope"></i> Me contacter</a>
