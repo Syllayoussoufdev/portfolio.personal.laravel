@@ -201,7 +201,7 @@
                 @empty
                     <p>Aucun projet disponible.</p>
                 @endforelse
-                <div class="project-card">
+                {{-- <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-users"></i>
                     </div>
@@ -276,5 +276,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
