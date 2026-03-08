@@ -174,7 +174,7 @@
                                     </a>
                                 @endif
                                 <a href="{{ route('projects.show', $project->id) }}" class="btn btn-small">
-                                    Détails
+                                    Détails Suivants
                                 </a>
                                 @if($project->lien_github)
                                     <a href="{{ $project->lien_github }}" target="_blank" class="btn btn-outline">
