@@ -1,12 +1,17 @@
 # On part d'une image PHP 8.3 avec Apache (le serveur web)
 FROM php:8.3-apache
 
+
 # 1. Installation des dépendances système nécessaires
 RUN apt-get update && apt-get install -y \
     libpng-dev libonig-dev libxml2-dev zip unzip git curl
 
 # 2. Installation des extensions PHP pour Laravel et MySQL
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Installation de Node.js et NPM (pour Vite)
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 
 # 3. Activation du module Rewrite d'Apache (indispensable pour les routes Laravel)
 RUN a2enmod rewrite

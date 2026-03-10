@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - "8080:80" # Ton site sera sur http://localhost:8080
+      - "5173:5173" # Ajoute cette ligne pour exposer le port de Vite
     volumes:
       - .:/var/www/html
     networks:
@@ -17,6 +18,21 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     networks:
       - laravel-network
+
+  # phpMyAdmin pour gérer ta base de données via une interface web
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: cvcrud-phpmyadmin
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 300M
+    ports:
+      - "8081:80"
+    networks:
+      - laravel-network      
 
 networks:
   laravel-network:
