@@ -4,6 +4,7 @@
     <body>
     <!-- Inclure la barre de navigation (un partial) -->
     @include('partials.navbar')
+    <h1 class="text-center mt-4">Bienvenue admin</h1>
 
     <!-- Zone de contenu principale -->
         @yield('content')

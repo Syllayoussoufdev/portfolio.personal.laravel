@@ -25,11 +25,11 @@
                 <a href="#projets" class="nav-link">Projets</a>
                 <a href="#contact" class="nav-link">Contact</a>
                 @auth
-                    <a class="nav-link" href={{route('admin.Competences.index')}}>Competences</a>
-                    <a class="nav-link" href={{ route('admin.diplomes.index') }}>Diplomes / Certifications</a>
-                    <a class="nav-link" href='#'>Experiences</a>
-                    <a class="nav-link" href={{ route('admin.messages.index') }}>Messages</a>        
-                
+                    <a class="nav-link" href={{route('admin.Competences.index')}}>CRUD-Comp</a>
+                    <a class="nav-link" href={{ route('admin.diplomes.index') }}>CRUD-Diplômes / Certifications</a>
+                    <a class="nav-link" href='#'>CRUD-Expériences</a>
+                    <a class="nav-link" href={{ route('admin.messages.index') }}>CRUD-Messages</a>        
+
                     <a href="{{ route('dashboard') }}" class="nav-link">Dashboard Administration</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
