@@ -11,7 +11,7 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
                             @auth
-                                <a href="{{ route('diplomes.create') }}" class="btn btn-primary">creer</a>                           
+                                <a href="{{ route('admin.diplomes.create') }}" class="btn btn-primary">creer</a>                           
                             @endauth
                                 <!-- Diploma Card 1-->
                             @foreach ($diplomes as $diplome)
@@ -30,8 +30,8 @@
                                     </p>                                    
                                     <br>
                                     @auth
-                                        <a href="{{ route('diplomes.edit', $diplome->id) }}" class="btn btn-primary">Edit</a>
-                                        <form action="{{ route('diplomes.destroy', $diplome->id) }}" method="POST" class="d-inline">
+                                        <a href="{{ route('admin.diplomes.edit', $diplome->id) }}" class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('admin.diplomes.destroy', $diplome->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

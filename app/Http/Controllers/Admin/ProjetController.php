@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Competence;
 use App\Models\Projet;
@@ -74,6 +75,7 @@ class ProjetController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'user_id' => 'nullable|exists:users,id',
             'Titre' => 'required|string|max:255',
             'Description' => 'required|string',
             'slug' => 'nullable|string|max:255',

@@ -1,54 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sylla Youssouf - Développeur Web & Mobile Junior</title>
-    <link rel="stylesheet" href="{{ asset('../assets/css/style2.css') }}">
-    <!-- Font Awesome pour les icônes -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Navigation fixe -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#accueil">Sylla Y.</a>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#accueil" class="nav-link active">Accueil</a>
-                <a href="#apropos" class="nav-link">À propos</a>
-                <a href="#competences" class="nav-link">Compétences</a>
-                <a href="#projets" class="nav-link">Projets</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                @auth
-                    <a class="nav-link" href={{route('admin.Competences.index')}}>CRUD-Comp</a>
-                    <a class="nav-link" href={{ route('admin.diplomes.index') }}>CRUD-Diplômes / Certifications</a>
-                    <a class="nav-link" href='#'>CRUD-Expériences</a>
-                    <a class="nav-link" href={{ route('admin.messages.index') }}>CRUD-Messages</a>        
-
-                    <a href="{{ route('dashboard') }}" class="nav-link">Dashboard Administration</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="nav-link">Logout</button>
-                    </form>
-                @else
-                    {{-- <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
-                    <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a> --}}
-                @endauth                        
-            </div>
-            <!-- Hamburger menu pour mobile -->
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
+@extends('layouts.portfolio_template')
+@section('content')
     <!-- Section Accueil (Hero) -->
     <!-- HERO -->
     <section id="accueil" class="hero" aria-labelledby="hero-title">
@@ -193,7 +144,7 @@
             </div>
         </div>
     </section>
-    
+        
     <!-- Section Compétences -->
     <section id="competences" class="skills">
         <div class="container">
@@ -374,34 +325,7 @@
     <section id="contact" class="contact">
         @include('partials._contact_form')
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Sylla Youssouf. Tous droits réservés.</p>
-            <p>Développé à Abidjan</p>
-            <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
-            <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a>
-             {{-- <div class="social-links">
-                <a href="https://github.com/Syllayoussoufdev" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/sylla-youssouf-devweb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:youssoufs1209@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://wa.me/2250707123456" class="social-link">
-                    <i class="fas fa-whatsapp"></i>
-                </a>
-                <a href="https://syllayoussouf.com" class="social-link">
-                    <i class="fas fa-globe"></i>
-                </a>
-        </div> --}}
-    </footer>
-
     <!-- Script JavaScript -->
-    <script src="{{ asset('../assets/js/script2.js') }}"></script>
-</body>
-</html>
+    <script src={{ asset('assets/js/script2.js') }}></script>
+
+@endsection

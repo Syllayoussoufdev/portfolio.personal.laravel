@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
 use App\Models\Competence;
 use App\Models\Diplome;
 use App\Models\Experience;
@@ -12,19 +14,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index($id = 1)
     {       
-        // On récupère les diplômes
-        //$diplomes = Diplome::orderBy('Annee_obtention', 'desc')->get();
+        if ($id) {
+            $owner = User::with(['competences', 'diplomes', 'experiences', 'projects'])->find($id);
+        } else {
+            $owner = User::with(['competences', 'diplomes', 'experiences', 'projects'])->first();
+        }
 
+        if (!$owner) {
+            abort(404, 'Portfolio non trouvé');
+         }
         // On récupère les compétences par catégorie (professionnelle et language)
-        $skills = Competence::where('category', 'professional')->get();
-        $languages = Competence::where('category', 'language')->get();
-        return view('portfolio.Home2', compact('skills', 'languages') ,[
-            'competences' => Competence::all(),
-            'diplomes' => Diplome::all(),
-            'experiences' => Experience::all(),
-            'projects' => Projet::with('competence')->get(),
-        ]);
+        // $skills = Competence::where('category', 'professional')->get();
+        // $languages = Competence::where('category', 'language')->get();
+        return view('portfolio.Home2', compact('owner')); // On passe l'utilisateur (et ses relations) à la vue pour affichage
     }
 }

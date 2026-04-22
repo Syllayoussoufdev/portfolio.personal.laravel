@@ -16,5 +16,9 @@ class Projet extends Model
     {
         return $this->belongsToMany(Competence::class,'competence_projet');
     }
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

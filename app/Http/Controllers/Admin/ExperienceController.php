@@ -31,10 +31,15 @@ class ExperienceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'company' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'user_id' => 'required|exists:users,id', // Assurez-vous que l'ID de l'utilisateur est valide
+            'poste' => 'required|string|max:255',
+            'entreprise' => 'required|string|max:255',
+            'periode' => 'required|string|max:255',
+            'adresse_entreprise' => 'nullable|string|max:255',
+            'type_contrat' => 'nullable|string|max:255',
+            'secteur_activite' => 'nullable|string|max:255',
+            'competences_utilisees' => 'nullable|array|',
+            'realisation_principale' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
 
@@ -69,10 +74,9 @@ class ExperienceController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'company' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'poste' => 'required|string|max:255',
+            'entreprise' => 'required|string|max:255',
+            'periode' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
         $experience = Experience::findOrFail($id);

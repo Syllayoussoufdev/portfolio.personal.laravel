@@ -1,5 +1,5 @@
 @extends('layouts.portfolio_master')
-@section('title', 'Add Competence')
+@section('title', 'Ajout Competence')
     @section('content')
       <main class="flex-shrink-0">
             <!-- Competences Section-->

@@ -11,7 +11,7 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
-                            <form method="POST" action="{{ route('diplomes.store') }}">
+                            <form method="POST" action="{{ route('admin.diplomes.store') }}">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="Titre" class="form-label">Diploma / Certification Titre</label>
@@ -26,7 +26,7 @@
                                     <input type="text" class="form-control" id="Centre_formateur" name="Centre_formateur" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label fw-bold">Associer aux Diplômes</label>
+                                    <label class="form-label fw-bold">Associer aux competences</label>
                                     <div class="border p-3 rounded">
                                         @foreach ($competences as $competence)
                                             <div class="form-check">

@@ -21,13 +21,23 @@ class CompetenceFactory extends Factory
     {
         return [
             // Simuler des noms de compétences aléatoires
-            'nom' => $this->faker->unique()->word().' Dev',
+            'nom_competence' => $this->faker->unique()->word().' Dev',
             // Niveau de compétence entre 1 et 10
             'niveau' => $this->faker->numberBetween(1, 10),
             // Pourcentage de maîtrise entre 10 et 100
             'pourcentage' => $this->faker->numberBetween(10, 100),
             // Type de compétence
-            'Type' => $this->faker->randomElement(['Techniques', 'Personnelles', 'Linguistiques', 'Informatiques']),
+            'category' => $this->faker->randomElement(['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']),
+            // Description aléatoire
+            'description' => $this->faker->sentence(),
+            // Icone aléatoire (exemple de classes FontAwesome)
+            'icon' => $this->faker->randomElement([
+                'fa-solid fa-code',
+                'fa-solid fa-briefcase',
+                'fa-solid fa-laptop-code',
+                'fa-solid fa-cogs',
+                'fa-solid fa-users',
+            ]),
         ];
     }
 }

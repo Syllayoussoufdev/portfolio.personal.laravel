@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->command->info('LiaisonFactorySeeder executed successfully.');
         
         // Si vous avez un utilisateur Admin critique, appelez son Seeder ici aussi.
-        // $this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

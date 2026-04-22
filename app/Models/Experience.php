@@ -10,11 +10,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Experience extends Model
 {
     use HasFactory;
-    protected $fillable = ['poste', 'entreprise', 'date_debut', 'date_fin', 'description'];
+    protected $fillable = [
+        'user_id', // Ajout de la clé étrangère pour l'utilisateur
+        'poste',
+        'entreprise',
+        'Adresse_entreprise',
+        'periode',
+        'type_contrat',
+        'secteur_activite',
+        'competences_utilisees',
+        'realisation_principale',
+        // 'equipe_geree',
+        'projet_principal',
+        'resultats_obtenus',
+        'description'
+    ];
 
     function competence(): BelongsToMany 
     {
         return $this->belongsToMany(Competence::class,'experience_competence');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    @include('partials.admin.head')
+    @include('partials.head')
     <body>
     <!-- Inclure la barre de navigation (un partial) -->
     @include('partials.navbar')
@@ -11,10 +11,10 @@
     
 
     <!-- Inclure le footer (un partial) -->
-    @include('partials.admin.footer')
+    @include('partials.footer')
 
     <!-- Vos scripts JS globaux -->
-    <script src="{{ asset('../assets/js/script.js') }}"></script>
+    <script src="{{ asset('../assets/js/script1.js') }}"></script>
 
     </body>
 </html>

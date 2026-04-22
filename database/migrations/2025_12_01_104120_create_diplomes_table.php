@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('diplomes', function (Blueprint $table) {
             $table->id();
-            $table->string('Titre');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Ajout de la relation avec les utilisateurs           
+            $table->string('Nom_diplome');
+            $table->enum('type_diplome', ['Certificat', 'Licence', 'Master', 'Doctorat', 'Autre'])->default('Autre');
             $table->string('Centre_formateur');
             $table->year('Annee_obtention');
-            $table->string('Lieu_centre');
             $table->string('niveau_diplome');
             $table->string('Domaine_etude');
             $table->string('Description');            

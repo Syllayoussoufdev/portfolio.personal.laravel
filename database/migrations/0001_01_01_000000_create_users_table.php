@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('titre_professionnel')->nullable();
+            $table->string('biographie')->nullable();
+            $table->string('photo_profil')->nullable(); // Chemin vers la photo de profil venant d'être uploadée et sauvegardée dans 'storage/app/public/photos'
+            $table->string('cv')->nullable(); // Chemin vers le CV venant d'être uploadé et sauvegardé dans 'storage/app/public/cvs'
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
