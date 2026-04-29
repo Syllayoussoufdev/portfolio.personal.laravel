@@ -9,8 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Vous etes Connecter au Dashbord 
-                </div>
+                    Vous etes Connecter au Dashbord 1
+                    <br>
+                    <button class="btn btn-primary mt-4">
+                        <a href="{{ route('admin.dashboard2') }}" class="btn btn-primary">
+                            Aller au Dashboard 2
+                        </a>
+                    </button>
+                    </div>
             </div>
         </div>
     </div>

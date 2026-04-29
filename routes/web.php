@@ -39,6 +39,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('/messages', MessagesController::class);
      // Cette ligne unique crée les 7 routes pour le CRUD des projets !
     Route::resource('/projects', ProjetController::class)->except(['index', 'show']);
+    Route::view('/dashboard/2', 'dashboard2')->name('dashboard2');
     
     // Tu feras la même chose pour diplômes plus tard
     Route::resource('diplomes', DiplomeController::class);

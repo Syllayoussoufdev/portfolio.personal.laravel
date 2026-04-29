@@ -8,20 +8,20 @@
                         </a>
                     </div>
                 @endauth
-                @forelse($owner->projects as $project)
-                    <div class="project-card">
-                        <div class="project-image">
-                            @if($project->image && file_exists(public_path('storage/' . $project->image)))
+                @forelse($owner->projets as $projet)
+                    <div class="projet-card">
+                        <div class="projet-image">
+                            @if($projet->image && file_exists(public_path('storage/' . $projet->image)))
                                 {{-- Cas où l'image existe --}}
                                 <div class="image-wrapper">
-                                    <img src="{{ asset('storage/' . $project->image) }}" alt="Image du projet" class="project-img">
+                                    <img src="{{ asset('storage/' . $projet->image) }}" alt="Image du projet" class="project-img">
                                 </div>
                             @else
                                 {{-- Cas du "Sticker" avec dégradé selon la catégorie --}}
                                 <div class="project-icon-sticker">
                                     @php
                                         // On normalise la catégorie pour la comparaison
-                                        $category = strtolower($project->category);
+                                        $category = strtolower($projet->category);
                                     @endphp
                                     {{-- <i class="fas fa-users"></i>
                                         <i class="fas fa-graduation-cap"></i>
@@ -41,39 +41,39 @@
                             @endif                        
                         </div>
                         <div class="project-content">
-                            <h3>{{ $project->titre }}</h3>
+                            <h3>{{ $projet->titre }}</h3>
                             <h5>
-                                <small class="text-muted">statut : "{{ $project->statut }}"</small>
+                                <small class="text-muted">statut : "{{ $projet->statut }}"</small>
                             </h5>
-                            <p>{{ Str::limit($project->description, 120) }}</p>
+                            <p>{{ Str::limit($projet->description, 120) }}</p>
                             <div class="project-tech">
-                                @forelse ($project->competence as $competence) 
-                                    <span class="tech-tag">{{ $competence->nom }}</span>
+                                @forelse ($projet->competence as $competence) 
+                                    <span class="tech-tag">{{ $competence->nom_competence }}</span>
                                 @empty
                                     <span class="tech-tag">Laravel,Bootstrap,MySQL</span>
                                 @endforelse
                             </div>
                             <div class="project-buttons">
-                                @if($project->lien_demo
+                                @if($projet->lien_demo
                                     )
-                                    <a href="{{ $project->lien_demo }}" target="_blank" class="btn btn-primary">
+                                    <a href="{{ $projet->lien_demo }}" target="_blank" class="btn btn-primary">
                                         <i class="bi bi-eye"></i> Voir
                                     </a>
                                 @endif
-                                <a href="{{ route('projects.show', $project->id) }}" class="btn btn-small">
+                                <a href="{{ route('projects.show', $projet->id) }}" class="btn btn-small">
                                     Détails 
                                 </a>
-                                @if($project->lien_github)
-                                    <a href="{{ $project->lien_github }}" target="_blank" class="btn btn-outline">
+                                @if($projet->lien_github)
+                                    <a href="{{ $projet->lien_github }}" target="_blank" class="btn btn-outline">
                                         <i class="bi bi-github"></i> GitHub
                                     </a>
                                 @endif   
                                 <br>
                                 @auth
-                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning btn-sm flex-grow-1">
+                                    <a href="{{ route('admin.projects.edit', $projet->id) }}" class="btn btn-warning btn-sm flex-grow-1">
                                         <i class="bi bi-pencil-square"></i> Éditer
                                     </a>
-                                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="flex-grow-1">
+                                    <form action="{{ route('admin.projects.destroy', $projet->id) }}" method="POST" class="flex-grow-1">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm w-100" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?');">

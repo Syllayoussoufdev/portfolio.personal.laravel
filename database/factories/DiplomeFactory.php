@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Diplome;
-use faker\Generator as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Diplome>
@@ -20,22 +19,15 @@ class DiplomeFactory extends Factory
     public function definition(): array
     {
         return [
-            // Simuler des noms de diplômes aléatoires
-            //unique() sert à éviter les doublons sentences de 3 mots / randomElement pour choisir un type de diplôme au hasard
-            'Titre' => $this->faker->unique()->sentence(3, true) . ' (' . $this->faker->randomElement(['Licence', 'Master', 'BTS']) . ')',
-            // Année aléatoire entre 2010 et 2023
-            'Annee_obtention' => $this->faker->numberBetween(2010, 2023),
-            // Centre formateur aléatoire
-            'Centre_formateur' => $this->faker->company(),
-            //lieu de formation dans une des villes proposées
-            'Lieu_centre' => $this->faker-> randomElement(['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Bordeaux', 'Nice']),
-
-            // Correction de la méthode Faker
-            // Ajout du champ manquant
-            'niveau_diplome' => $this->faker->randomElement(['Bac+2', 'Bac+3', 'Bac+5']),
-            'Domaine_etude' => $this->faker->jobTitle(), 
-            'Description' => $this->faker->paragraph(),
-            
+            'user_id' => \App\Models\User::factory(), // Associe chaque diplôme à un utilisateur
+            'nom_diplome' => fake()->sentence(3), // Génère un nom de diplôme aléatoire
+            'annee_obtention' => fake()->year(), // Génère une année d'obtention aléatoire
+            'type_diplome' => fake()->randomElement(['Licence', 'Master', 'Doctorat','Certificat', 'Autre']), // Choix aléatoire parmi les types de diplômes
+            'annee_obtention' => fake()->year(), // Génère une année d'obtention aléatoire
+            'centre_formateur' => fake()->company(), // Génère un nom de centre de formation aléatoire
+            'niveau_diplome' => fake()->randomElement(['Bac+2', 'Bac+3', 'Bac+5']), // Choix aléatoire parmi les niveaux de diplômes
+            'domaine_etude' => fake()->word(), // Génère un domaine d'étude aléatoire 
+            'description' => fake()->paragraph(), // Génère une description aléatoire
 
         ];
     }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('cv')->nullable(); // Chemin vers le CV venant d'être uploadé et sauvegardé dans 'storage/app/public/cvs'
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password'); //mot de passe hashé    
             $table->rememberToken();
             $table->timestamps();
         });

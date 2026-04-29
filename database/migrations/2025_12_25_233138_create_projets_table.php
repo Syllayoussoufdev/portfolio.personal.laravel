@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('image')->nullable(); // Chemin vers l'image venant d'être uploadée et sauvegardée dans 'storage/app/public/projects'
             $table->string('slug')->nullable();
             $table->text('description');
-            $table->enum('statut', ['en cours', 'terminé', 'en production', 'publié'])->nullable();
-            $table->enum('category', ['web', 'mobile', 'ia', 'data', 'formation'])->nullable();
+            $table->enum('statut', ['en cours', 'terminé', 'en production', 'publier'])->nullable();
+            $table->string('category')->nullable();
             $table->string('lien_github')->nullable();
             $table->string('lien_demo')->nullable();
 

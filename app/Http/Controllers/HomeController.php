@@ -14,12 +14,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($id = 1)
+    public function index($id = null)
     {       
         if ($id) {
-            $owner = User::with(['competences', 'diplomes', 'experiences', 'projects'])->find($id);
+            // Si un ID est fourni dans l'URL, on essaie de trouver cet utilisateur avec id $id
+            $owner = User::with(['competences', 'diplomes', 'experiences', 'projets'])->where('id', $id)->first();// on récupère l'utilisateur avec ses relations (compétences, diplômes, expériences, projets) en fonction de l'ID passé dans l'URL
         } else {
-            $owner = User::with(['competences', 'diplomes', 'experiences', 'projects'])->first();
+            $owner = User::with(['competences', 'diplomes', 'experiences', 'projets'])->first();
         }
 
         if (!$owner) {

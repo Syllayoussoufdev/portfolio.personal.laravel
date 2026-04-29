@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+//use App\Models\User;
+use App\Models\Diplome;
+use App\Models\Competence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,12 +22,14 @@ class DatabaseSeeder extends Seeder
         // 🚨 IMPORTANT : N'appelez QUE le Seeder qui contient la logique
         // de création et de liaison (votre code d'adaptation)
         $this->call([
+            //\Database\Seeders\UserSeeder::class,
+            //\Database\Seeders\CompetenceSeeder::class,
+            //\Database\Seeders\DiplomeSeeder::class,
             \Database\Seeders\LiaisonFactorySeeder::class,
-            // Vous pouvez laisser les autres vides, mais ne les appelez plus ici
+            //\Database\Seeders\LiaisonFactorySeeder::class,
+            // Vous pouvez laisser les autres seeders commentés ou les supprimer si vous n'en avez pas besoin
+
         ]);
-        $this->command->info('LiaisonFactorySeeder executed successfully.');
-        
-        // Si vous avez un utilisateur Admin critique, appelez son Seeder ici aussi.
-        $this->call(UserSeeder::class);
+        $this->command->info('seeders User executed successfully.');
     }
 }
