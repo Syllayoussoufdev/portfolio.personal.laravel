@@ -32,9 +32,13 @@ class CompetenceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nom' => 'required|string|max:255',
+            'user_id' => 'required|exists:users,id', // Assurez-vous que l'ID de l'utilisateur est valide
+            'nom_competence' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
+            'category' => 'required|in:Professionnelle,Language,Informatiques,Soft Skills',
             'pourcentage' => 'required|integer|min:0|max:100',
+            'description' => 'nullable|string|max:255',
+            'icon' => 'nullable|string|max:255',
             'diplome_id' => 'nullable|array',
             'diplome_id.*' => 'exists:diplomes,id',
         ]);
@@ -72,7 +76,10 @@ class CompetenceController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
+            'category' => 'required|in:Professionnelle,Language,Informatiques,Soft Skills',
             'pourcentage' => 'required|integer|min:0|max:100',
+            'description' => 'nullable|string|max:255',
+            'icon' => 'nullable|string|max:255',
             'diplome_id' => 'nullable|array',
             'diplome_id.*' => 'exists:diplomes,id',
         ]);
@@ -100,23 +107,5 @@ class CompetenceController extends Controller
         return redirect()->route('competence')
             ->with('success', 'Compétence supprimée avec succès.');
         // return response()->json(['message' => 'Compétence supprimée avec succès.'], 200); utiliser pour API
-    }
-    public function assignToDiplome(Request $request, $id)
-    {
-        $request->validate([
-            'diplome_ids' => 'required|array',
-            'diplome_ids.*' => 'exists:diplomes,id',
-        ]);
-        $competence = Competence::findOrFail($id);
-        $diplomeIds = $request->input('diplome_ids', []);
-        $competence->diplome()->sync($diplomeIds);
-        return redirect()->route('competence')
-            ->with('success', 'Compétence assignée aux diplômes avec succès.');
-    }
-    public function assignToDiplomeForm($id)
-    {
-        $competence = Competence::findOrFail($id);
-        $diplomes = Diplome::all();
-        return view('admin.competences.assign_diplomes', compact('competence', 'diplomes'));
     }
 }

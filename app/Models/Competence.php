@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Competence extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom', 'niveau', 'pourcentage', 'Type'];
-   
+    protected $fillable = ['user_id', 'nom_competence', 'niveau', 'pourcentage', 'category', 'description', 'icon','type'];
+    
+    
     public function diplome(): BelongsToMany 
     {
         return $this->belongsToMany(Diplome::class,'diplome_competence');
@@ -23,5 +24,9 @@ class Competence extends Model
     public function projet(): BelongsToMany 
     {
         return $this->belongsToMany(Projet::class,'competence_projet');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

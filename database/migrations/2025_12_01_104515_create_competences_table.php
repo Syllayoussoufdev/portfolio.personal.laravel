@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('competences', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Ajout de la relation avec les utilisateurs    
+            $table->string('nom_competence');
             $table->string('niveau');
-            $table->string('Type');
             $table->integer('pourcentage');
-            $table->enum('category', ['professional', 'language']);
+            $table->enum('category', ['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']);
+            $table->enum('type', ['Back-end', 'Front-end', 'Full-stack', 'Mobile', 'Autre'])->default('Autre')->nullable();
+            $table->text('description')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

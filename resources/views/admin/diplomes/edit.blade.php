@@ -1,5 +1,5 @@
-@extends('layouts.portfolio_master')
-@section('title', 'Edit Diploma / Certification')
+@extends('layouts.portfolio_template')
+@section('title', 'Edit diplome / Certification')
 @section('content')
       <main class="flex-shrink-0">
             <!-- Diplomes Section-->
@@ -11,7 +11,7 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
-                            <form method="POST" action="{{ route('diplomes.update', $diplome->id) }}">
+                            <form method="POST" action="{{ route('admin.diplomes.update', $diplome->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">

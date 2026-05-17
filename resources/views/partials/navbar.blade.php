@@ -1,32 +1,38 @@
-<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href={{ route('home') }}><span class="fw-bolder text-primary">Sly Dev Portfolio</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href='#'>Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href='#resume'>Resumer</a></li>
-                            <li class="nav-item"><a class="nav-link" href='#portfolio'>Mes Projets</a></li>
-                            <li class="nav-item"><a class="nav-link" href='#'>Blog Perso</a></li>
-                            @auth
-                            <li class="nav-item"><a class="nav-link" href={{route('admin.Competences.index')}}>Competences</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('admin.diplomes.index') }}>Diplomes / Certifications</a></li>
-                            <li class="nav-item"><a class="nav-link" href='#'>Experiences</a></li>
-                            <li class="nav-item"><a class="nav-link" href={{ route('admin.messages.index') }}>Messages</a></li>
-                            @endauth
-                            <li class="nav-item"><a class="nav-link" href='#contact'>Contact</a></li>
-                        @auth
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm me-3">Dashboard Administration</a>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
-                            </form>
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-primary btn-sm me-3"></a>
-                            <a href="{{ route('inscrire') }}" class="btn btn-outline-dark fw-bolder btn-sm me-3"></a>
-                        @endauth
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+    <!-- Navigation fixe -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#accueil">Sylla Y.</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#accueil" class="nav-link active">Accueil</a>
+                <a href="#apropos" class="nav-link">À propos</a>
+                <a href="#competences" class="nav-link">Compétences</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                @auth
+                    <a class="nav-link" href={{route('admin.Competences.index')}}>CRUD-Comp</a>
+                    <a class="nav-link" href={{ route('admin.diplomes.index') }}>CRUD-Diplômes / Certifications</a>
+                    <a class="nav-link" href='#'>CRUD-Expériences</a>
+                    <a class="nav-link" href={{ route('admin.messages.index') }}>CRUD-Messages</a>        
+
+                    <a href="{{ route('dashboard') }}" class="nav-link">Dashboard Administration</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-link">Logout</button>
+                    </form>
+                @else
+                    {{-- <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+                    <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a> --}}
+                @endauth                        
+            </div>
+            <!-- Hamburger menu pour mobile -->
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <style src ="{{ asset('../assets/css/style2.css') }}">
+    </style>n

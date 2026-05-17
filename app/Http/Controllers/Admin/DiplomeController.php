@@ -22,7 +22,7 @@ class DiplomeController extends Controller
     public function create()
     {
         $competences = Competence::all();
-        return view('diplomes.create', compact('competences'));
+        return view('admin.diplomes.create', compact('competences'));
     }
 
     /**
@@ -32,9 +32,14 @@ class DiplomeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Titre' => 'required|string|max:255',
+            'Nom_diplome' => 'required|string|max:255',
+            'user_id' => 'required|exists:users,id', // Assurez-vous que l'ID de l'utilisateur est valide
             'Centre_formateur' => 'required|string|max:255',
             'Annee_obtention' => 'required|digits:4|integer|min:1900|max:' . (date('Y')),
+            'type_diplome' => 'nullable|in:Certificat,Licence,Master,Doctorat,Autre',
+             'niveau_diplome' => 'nullable|string|max:255',
+             'Domaine_etude' => 'nullable|string|max:255',
+             'Description' => 'nullable|string|max:255',
             'competence_id' => 'nullable|array',
             'competence_id.*' => 'exists:competences,id',
             
@@ -43,7 +48,7 @@ class DiplomeController extends Controller
         if ($request->has('competence_id')) {
             $diplome->competence()->attach($request->input('competence_id'));
         }
-        return redirect()->route('diplomes.index')
+        return redirect()->route('admin.diplomes.index')
             ->with('success', 'Diplôme créé avec succès.');
         // return response()->json(['message' => 'Diplôme créé avec succès.'], 201); retourner pour API
     }
@@ -64,9 +69,14 @@ class DiplomeController extends Controller
     public function update(Request $request, string $id)
     {        
         $request->validate([
-            'Titre' => 'required|string|max:255',
+            'Nom_diplome' => 'required|string|max:255',
+            'user_id' => 'required|exists:users,id', // Assurez-vous que l'ID de l'utilisateur est valide
             'Centre_formateur' => 'required|string|max:255',
             'Annee_obtention' => 'required|digits:4|integer|min:1900|max:' . (date('Y')),
+            'type_diplome' => 'nullable|in:Certificat,Licence,Master,Doctorat,Autre',
+             'niveau_diplome' => 'nullable|string|max:255',
+             'Domaine_etude' => 'nullable|string|max:255',
+             'Description' => 'nullable|string|max:255',
             'competence_id' => 'nullable|array',
             'competence_id.*' => 'exists:competences,id',
         ]);
@@ -99,7 +109,7 @@ class DiplomeController extends Controller
     {
         $diplome = Diplome::findOrFail($id);
         $diplome->delete();
-        return redirect()->route('diplomes.index')
+        return redirect()->route('admin.diplomes.index')
             ->with('success', 'Diplôme supprimé avec succès.');
         // return response()->json(['message' => 'Diplôme supprimé avec succès.'], 200); utiliser pour API
     }

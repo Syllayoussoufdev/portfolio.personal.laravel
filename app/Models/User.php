@@ -6,6 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Competence;
+use App\Models\Diplome;
+use App\Models\Experience;
+use App\Models\Projet;
 
 class User extends Authenticatable
 {
@@ -21,7 +25,34 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'titre_professionnel',
+        'biographie',
+        'photo_profil',
+        'a_propos',
+        'cv',
+        'role',
     ];
+
+    public function isAdmin(): bool {
+    return $this->role === 'admin';
+    }
+    
+    function competences()
+    {
+        return $this->hasMany(Competence::class);
+    }
+    function diplomes()
+    {
+        return $this->hasMany(Diplome::class);
+    }
+    function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+    function projets()
+    {
+        return $this->hasMany(Projet::class);
+    }    
 
     /**
      * The attributes that should be hidden for serialization.

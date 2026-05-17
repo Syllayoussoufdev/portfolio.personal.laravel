@@ -1,19 +1,25 @@
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; Portfolio Sylla 2025</div></div>
-                    <div class="col-auto">
-                        <a class="small" href="#!">AD</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Terms</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">ContactS</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer-->
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sylla Youssouf. Tous droits réservés.</p>
+            <p>Développé à Abidjan</p>
+            <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+            <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a>
+             {{-- <div class="social-links">
+                <a href="https://github.com/Syllayoussoufdev" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sylla-youssouf-devweb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:youssoufs1209@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://wa.me/2250707123456" class="social-link">
+                    <i class="fas fa-whatsapp"></i>
+                </a>
+                <a href="https://syllayoussouf.com" class="social-link">
+                    <i class="fas fa-globe"></i>
+                </a>
+        </div> --}}
+    </footer>

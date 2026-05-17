@@ -20,15 +20,18 @@ class ExperienceFactory extends Factory
     public function definition(): array
     {
         return [
-            // Simuler des postes aléatoires
-            'poste' => $this->faker->jobTitle(),
-            // Simuler des noms d'entreprises aléatoires
-            'entreprise' => $this->faker->company(),
-            // Dates de début et de fin aléatoires
-            'date_debut' => $this->faker->dateTimeBetween('-5 years', 'now')->format('Y-m-d'),
-            'date_fin' => $this->faker->dateTimeBetween('-2', 'now')->format('Y-m-d'),
-            // Description de l'expérience
-            'description' => $this->faker->paragraph(2, true),
+            'user_id' => \App\Models\User::factory(), // Associe chaque expérience à un utilisateur
+            'poste' => fake()->jobTitle(),
+            'entreprise' => fake()->company(),
+            'Adresse_entreprise' => fake()->address(),
+            'periode' => fake()->date(),
+            'type_contrat' => fake()->randomElement(['CDD', 'CDI', 'Stage', 'Freelance']),
+            'secteur_activite' => fake()->word(),
+            'realisation_principale' => fake()->paragraph(),
+            // 'equipe_geree',
+            'projet_principal' => fake()->sentence(),
+            'resultats_obtenus' => fake()->paragraph(),
+            'description' => fake()->paragraph()
         ];
     }
 }

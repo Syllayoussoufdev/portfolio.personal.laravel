@@ -1,4 +1,4 @@
-@extends('layouts.portfolio_master')
+@extends('layouts.portfolio_template')
 @section('title', 'Edit Competence')
 @section('content')
       <main class="flex-shrink-0">
