@@ -1,4 +1,4 @@
-@extends('layouts.portfolio_master')
+@extends('layouts.portfolio_template')
 @section('title', $project->titre)
 @section('content')
 <div class="container py-5">

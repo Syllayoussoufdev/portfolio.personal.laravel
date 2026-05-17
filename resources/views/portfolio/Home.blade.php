@@ -313,17 +313,12 @@
 
                             </div>
                         </div> --}}
-                        <div class="timeline-item">
-                            <div class="timeline-date">2024</div>
+                        <div class="timeline">
+                        <div class="timeline-item">2024</div>
                             <div class="timeline-content">
                                 <h4>Certificat en Marketing digitale</h4>
                                 <p>Suite a une formations de 3 jors j'ai obtenue le Certificat, decerne par l'AJNV</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline">
-                        <div class="timeline-item">
                             <div class="timeline-date">2025</div>
                             <div class="timeline-content">
                                 <h4>Openclasroom</h4>
@@ -342,7 +337,7 @@
                                 <p>Suite a une formations de 3 jors j'ai obtenue le Certificat, decerne par l'AJNV</p>
                             </div>
                         </div>
-                    </div>           
+                    </div>  
                 </div>                    
             </div>
         </div>

@@ -29,6 +29,6 @@ class HomeController extends Controller
         // On récupère les compétences par catégorie (professionnelle et language)
         // $skills = Competence::where('category', 'professional')->get();
         // $languages = Competence::where('category', 'language')->get();
-        return view('portfolio.Home2', compact('owner')); // On passe l'utilisateur (et ses relations) à la vue pour affichage
+        return view('portfolio.Home', compact('owner')); // On passe l'utilisateur (et ses relations) à la vue pour affichage
     }
 }

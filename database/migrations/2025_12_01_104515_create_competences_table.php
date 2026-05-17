@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('niveau');
             $table->integer('pourcentage');
             $table->enum('category', ['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']);
+            $table->enum('type', ['Back-end', 'Front-end', 'Full-stack', 'Mobile', 'Autre'])->default('Autre')->nullable();
             $table->text('description')->nullable();
             $table->string('icon')->nullable();
             $table->timestamps();

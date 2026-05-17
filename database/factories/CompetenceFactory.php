@@ -21,23 +21,19 @@ class CompetenceFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(), // Associe chaque compétence à un utilisateur si non spécifié
             // Simuler des noms de compétences aléatoires
-            'nom_competence' => fake()->unique()->word(),
+            'nom_competence' => fake()->word(),
             // Niveau de compétence entre 1 et 10
             'niveau' => fake()->numberBetween(1, 10),
             // Pourcentage de maîtrise entre 10 et 100
             'pourcentage' => fake()->numberBetween(10, 100),
-            // Type de compétence
+            // Catégorie de compétence
             'category' => fake()->randomElement(['Professionnelle', 'Language', 'Informatiques', 'Soft Skills']),
-            // Description aléatoire
+            // Type de compétence
+            'type' => fake()->randomElement(['Back-end', 'Front-end', 'Full-stack', 'Mobile', 'Autre']),
+            // Description aléatoire    
             'description' => fake()->sentence(),
             // Icone aléatoire (exemple de classes FontAwesome)
-            'icon' => fake()->randomElement([
-                'fa-solid fa-code',
-                'fa-solid fa-briefcase',
-                'fa-solid fa-laptop-code',
-                'fa-solid fa-cogs',
-                'fa-solid fa-users',
-            ]),
+            'icon' => fake()->word(),
         ];
     }
 }

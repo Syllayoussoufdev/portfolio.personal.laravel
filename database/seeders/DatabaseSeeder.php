@@ -22,12 +22,14 @@ class DatabaseSeeder extends Seeder
         // 🚨 IMPORTANT : N'appelez QUE le Seeder qui contient la logique
         // de création et de liaison (votre code d'adaptation)
         $this->call([
-            //\Database\Seeders\UserSeeder::class,
-            //\Database\Seeders\CompetenceSeeder::class,
-            //\Database\Seeders\DiplomeSeeder::class,
+            \Database\Seeders\UserSeeder::class,
+            \Database\Seeders\CompetenceSeeder::class,
+            \Database\Seeders\DiplomeSeeder::class,
+            \Database\Seeders\ExperienceSeeder::class,
+            \Database\Seeders\ProjetSeeder::class,
             \Database\Seeders\LiaisonFactorySeeder::class,
             //\Database\Seeders\LiaisonFactorySeeder::class,
-            // Vous pouvez laisser les autres seeders commentés ou les supprimer si vous n'en avez pas besoin
+            // Vous pouvez laisser les autres seeders commentés ou les supprimer si vous n'en avez pas besoin /
 
         ]);
         $this->command->info('seeders User executed successfully.');

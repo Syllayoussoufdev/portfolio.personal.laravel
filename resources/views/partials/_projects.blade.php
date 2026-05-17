@@ -9,21 +9,21 @@
                     </div>
                 @endauth
                 @forelse($owner->projets as $projet)
-                    <div class="projet-card">
-                        <div class="projet-image">
-                            @if($projet->image && file_exists(public_path('storage/' . $projet->image)))
-                                {{-- Cas où l'image existe --}}
-                                <div class="image-wrapper">
-                                    <img src="{{ asset('storage/' . $projet->image) }}" alt="Image du projet" class="project-img">
-                                </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                           {{-- Cas où l'image existe --}}
+                            @if($projet->images && file_exists(public_path($projet->images)))
+                                <div class="project-image">
+                                    <img src="{{ asset($projet->images) }}" alt="Image du projet {{ $projet->nom }}">
+                                </div> {{-- Correction ici : bien fermer avec </div> --}}
                             @else
                                 {{-- Cas du "Sticker" avec dégradé selon la catégorie --}}
-                                <div class="project-icon-sticker">
+                                <div class="project-image">
                                     @php
                                         // On normalise la catégorie pour la comparaison
                                         $category = strtolower($projet->category);
                                     @endphp
-                                    {{-- <i class="fas fa-users"></i>
+                                    {{-- <i class="fas fa-users"></i>S
                                         <i class="fas fa-graduation-cap"></i>
                                         <i class="fas fa-chart-bar"></i> --}}
                                     @if($category == 'web')
@@ -38,12 +38,13 @@
                                         <i class="fas fa-cubes"></i>
                                     @endif
                                 </div>
-                            @endif                        
+                            @endif                          
                         </div>
                         <div class="project-content">
                             <h3>{{ $projet->titre }}</h3>
                             <h5>
-                                <small class="text-muted">statut : "{{ $projet->statut }}"</small>
+                                <small class="text-muted">Catégorie : {{ $projet->category }}</small><br>
+                                <small class="text-muted">Statut : "{{ $projet->statut }}"</small>
                             </h5>
                             <p>{{ Str::limit($projet->description, 120) }}</p>
                             <div class="project-tech">
@@ -82,13 +83,12 @@
                                     </form>
                                 @endauth   
                             </div>
-
                         </div>
                     </div>
                 @empty
                     <p>Aucun projet disponible.</p>
                 @endforelse
-                <div class="project-card">
+                {{-- <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-users"></i>
                     </div>
@@ -162,6 +162,6 @@
                             <a href="https://github.com/Syllayoussoufdev" class="btn btn-outline">GitHub</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>

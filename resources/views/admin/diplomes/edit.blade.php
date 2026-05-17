@@ -1,4 +1,4 @@
-@extends('layouts.portfolio_master')
+@extends('layouts.portfolio_template')
 @section('title', 'Edit diplome / Certification')
 @section('content')
       <main class="flex-shrink-0">

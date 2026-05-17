@@ -27,7 +27,6 @@ class ExperienceFactory extends Factory
             'periode' => fake()->date(),
             'type_contrat' => fake()->randomElement(['CDD', 'CDI', 'Stage', 'Freelance']),
             'secteur_activite' => fake()->word(),
-            'competences_utilisees'=> \App\Models\Competence::factory()->count(3), // Associe 3 compétences à chaque expérience
             'realisation_principale' => fake()->paragraph(),
             // 'equipe_geree',
             'projet_principal' => fake()->sentence(),

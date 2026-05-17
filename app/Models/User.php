@@ -28,8 +28,14 @@ class User extends Authenticatable
         'titre_professionnel',
         'biographie',
         'photo_profil',
+        'a_propos',
         'cv',
+        'role',
     ];
+
+    public function isAdmin(): bool {
+    return $this->role === 'admin';
+    }
     
     function competences()
     {

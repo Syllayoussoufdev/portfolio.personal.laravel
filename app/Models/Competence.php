@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Competence extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'nom_competence', 'niveau', 'pourcentage', 'category', 'description', 'icon',];
+    protected $fillable = ['user_id', 'nom_competence', 'niveau', 'pourcentage', 'category', 'description', 'icon','type'];
     
     
     public function diplome(): BelongsToMany 

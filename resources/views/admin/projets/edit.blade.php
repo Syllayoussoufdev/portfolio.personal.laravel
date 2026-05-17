@@ -1,4 +1,4 @@
-@extends('layouts.portfolio_master')
+@extends('layouts.portfolio_template')
 @section('title', 'Edit '.$project->titre)
 @section('content')
     <main>

@@ -1,0 +1,1220 @@
+# Commandes Laravel Artisan pour générer les ressources
+
+# Générer les ressources pour User
+php artisan make:model User -mcr
+php artisan make:migration create_users_table
+php artisan make:controller UserController --api
+
+# Générer les ressources pour cv
+php artisan make:model Cv -mcr
+php artisan make:migration create_cvs_table
+php artisan make:controller CvController --api
+
+# Générer les ressources pour 0ffres_emploi
+php artisan make:model 0ffresEmploi -mcr
+php artisan make:migration create_0ffres_emplois_table
+php artisan make:controller 0ffresEmploiController --api
+
+# Générer les ressources pour projets
+php artisan make:model Projet -mcr
+php artisan make:migration create_projetses_table
+php artisan make:controller ProjetController --api
+
+# Générer les ressources pour competences
+php artisan make:model Competence -mcr
+php artisan make:migration create_competenceses_table
+php artisan make:controller CompetenceController --api
+
+# Générer les ressources pour diplomes
+php artisan make:model Diplome -mcr
+php artisan make:migration create_diplomeses_table
+php artisan make:controller DiplomeController --api
+
+# Générer les ressources pour esperiences
+php artisan make:model Esperience -mcr
+php artisan make:migration create_esperienceses_table
+php artisan make:controller EsperienceController --api
+
+# Générer les ressources pour models
+php artisan make:model Model -mcr
+php artisan make:migration create_modelses_table
+php artisan make:controller ModelController --api
+
+# Commandes de migration
+php artisan migrate
+
+# Installation des dépendances
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+
+
+==================================================
+# MIGRATIONS
+==================================================
+
+// Migration: users
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('name', 255)->nullable();
+            $table->string('photo_profil_user', 255)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('password', 255)->nullable();
+            $table->string('email_verified_at', 255)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+
+
+// Migration: cvs
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('cvs', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('titre_professionnel', 255)->nullable();
+            $table->integer('user_id');
+            $table->string('biographie', 255)->nullable();
+            $table->string('liens_cv', 255)->nullable();
+            $table->string('photo_home', 255)->nullable();
+            $table->uuid('models_id')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('cvs');
+    }
+};
+
+
+// Migration: 0ffres_emplois
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('0ffres_emplois', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('titre_offre', 255);
+            $table->string('poste', 255)->nullable();
+            $table->string('techno_offre', 255)->nullable();
+            $table->string('liens_offre', 255)->nullable();
+            $table->string('description_offre', 255)->nullable();
+            $table->string('contact', 255)->nullable();
+            $table->uuid('cv_id')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('0ffres_emplois');
+    }
+};
+
+
+// Migration: projetses
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('projetses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('titre', 255)->nullable();
+            $table->string('images', 255)->nullable();
+            $table->string('description', 255)->nullable();
+            $table->string('statut', 255)->nullable();
+            $table->string('category', 255)->nullable();
+            $table->string('lien_github', 255)->nullable();
+            $table->string('lien_demo', 255)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('projetses');
+    }
+};
+
+
+// Migration: competenceses
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('competenceses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nom_comp', 255)->nullable();
+            $table->string('niveau', 255)->nullable();
+            $table->integer('pourcentage')->nullable();
+            $table->string('category', 255)->nullable();
+            $table->string('type_comp', 255)->nullable();
+            $table->string('description', 255)->nullable();
+            $table->string('icon', 255)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('competenceses');
+    }
+};
+
+
+// Migration: diplomeses
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('diplomeses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('titre_diplome', 255)->nullable();
+            $table->string('type_diplome', 255)->nullable();
+            $table->string('annee_obtention', 255)->nullable();
+            $table->string('centre_formateur', 255)->nullable();
+            $table->string('domaine_etude', 255)->nullable();
+            $table->string('description', 255)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('diplomeses');
+    }
+};
+
+
+// Migration: esperienceses
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('esperienceses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('poste', 255)->nullable();
+            $table->string('entreprise', 255)->nullable();
+            $table->string('adresse_entreprise', 255)->nullable();
+            $table->date('date_deut')->nullable();
+            $table->date('date_fin')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('esperienceses');
+    }
+};
+
+
+// Migration: modelses
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('modelses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nom', 255)->nullable();
+            $table->string('type', 255)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('modelses');
+    }
+};
+
+
+==================================================
+# MODELS AVEC RELATIONS
+==================================================
+
+// Model: User
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class User extends Model
+{
+    use HasFactory;
+
+    protected $table = 'users';
+
+    protected $fillable = [
+        'name',
+        'photo_profil_user',
+        'email',
+        'password',
+        'email_verified_at'
+    ];
+
+    public function cv(): BelongsTo
+    {
+        return $this->belongsTo(Cv::class);
+    }
+
+}
+
+
+// Model: Cv
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Cv extends Model
+{
+    use HasFactory;
+
+    protected $table = 'cvs';
+
+    protected $fillable = [
+        'titre_professionnel',
+        'user_id',
+        'biographie',
+        'liens_cv',
+        'photo_home',
+        'models_id'
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function 0ffres_emploi(): BelongsTo
+    {
+        return $this->belongsTo(0ffresEmploi::class);
+    }
+
+    // Type de relation non reconnu: 0,N->1,N (0,N->1,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 0,N->0,1 (0,1->0,N)
+}
+
+
+// Model: 0ffresEmploi
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class 0ffresEmploi extends Model
+{
+    use HasFactory;
+
+    protected $table = '0ffres_emplois';
+
+    protected $fillable = [
+        'titre_offre',
+        'poste',
+        'techno_offre',
+        'liens_offre',
+        'description_offre',
+        'contact',
+        'cv_id'
+    ];
+
+    public function cv(): BelongsTo
+    {
+        return $this->belongsTo(Cv::class);
+    }
+
+}
+
+
+// Model: Projet
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Projet extends Model
+{
+    use HasFactory;
+
+    protected $table = 'projetses';
+
+    protected $fillable = [
+        'titre',
+        'images',
+        'description',
+        'statut',
+        'category',
+        'lien_github',
+        'lien_demo'
+    ];
+
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+}
+
+
+// Model: Competence
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Competence extends Model
+{
+    use HasFactory;
+
+    protected $table = 'competenceses';
+
+    protected $fillable = [
+        'nom_comp',
+        'niveau',
+        'pourcentage',
+        'category',
+        'type_comp',
+        'description',
+        'icon'
+    ];
+
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+}
+
+
+// Model: Diplome
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Diplome extends Model
+{
+    use HasFactory;
+
+    protected $table = 'diplomeses';
+
+    protected $fillable = [
+        'titre_diplome',
+        'type_diplome',
+        'annee_obtention',
+        'centre_formateur',
+        'domaine_etude',
+        'description'
+    ];
+
+    // Type de relation non reconnu: 0,N->1,N (0,N->1,N)
+}
+
+
+// Model: Esperience
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Esperience extends Model
+{
+    use HasFactory;
+
+    protected $table = 'esperienceses';
+
+    protected $fillable = [
+        'poste',
+        'entreprise',
+        'adresse_entreprise',
+        'date_deut',
+        'date_fin'
+    ];
+
+    protected $casts = [
+        'date_deut' => 'datetime',
+        'date_fin' => 'datetime'
+    ];
+
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+    // Type de relation non reconnu: 1,N->0,N (1,N->0,N)
+}
+
+
+// Model: Model
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Model extends Model
+{
+    use HasFactory;
+
+    protected $table = 'modelses';
+
+    protected $fillable = [
+        'nom',
+        'type'
+    ];
+
+    // Type de relation non reconnu: 0,N->0,1 (0,1->0,N)
+}
+
+
+==================================================
+# CONTROLLERS API
+==================================================
+
+// Controller: UserController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'string|max:255',
+            'photo_profil_user' => 'string|max:255',
+            'email' => 'string|max:255',
+            'password' => 'string|max:255',
+            'email_verified_at' => 'string|max:255'
+        ]);
+
+        $user = User::create($validated);
+        return response()->json($user, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user): JsonResponse
+    {
+        return response()->json($user);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'string|max:255',
+            'photo_profil_user' => 'string|max:255',
+            'email' => 'string|max:255',
+            'password' => 'string|max:255',
+            'email_verified_at' => 'string|max:255'
+        ]);
+
+        $user->update($validated);
+        return response()->json($user);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user): JsonResponse
+    {
+        $user->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: CvController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Cv;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class CvController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $cvs = Cv::all();
+        return response()->json($cvs);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_professionnel' => 'string|max:255',
+            'user_id' => 'required|integer',
+            'biographie' => 'string|max:255',
+            'liens_cv' => 'string|max:255',
+            'photo_home' => 'string|max:255',
+            'models_id' => 'string|max:255'
+        ]);
+
+        $cv = Cv::create($validated);
+        return response()->json($cv, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Cv $cv): JsonResponse
+    {
+        return response()->json($cv);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Cv $cv): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_professionnel' => 'string|max:255',
+            'user_id' => 'sometimes|integer',
+            'biographie' => 'string|max:255',
+            'liens_cv' => 'string|max:255',
+            'photo_home' => 'string|max:255',
+            'models_id' => 'string|max:255'
+        ]);
+
+        $cv->update($validated);
+        return response()->json($cv);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Cv $cv): JsonResponse
+    {
+        $cv->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: 0ffresEmploiController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\0ffresEmploi;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class 0ffresEmploiController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $0ffres_emplois = 0ffresEmploi::all();
+        return response()->json($0ffres_emplois);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_offre' => 'required|string|max:255',
+            'poste' => 'string|max:255',
+            'techno_offre' => 'string|max:255',
+            'liens_offre' => 'string|max:255',
+            'description_offre' => 'string|max:255',
+            'contact' => 'string|max:255',
+            'cv_id' => 'string|max:255'
+        ]);
+
+        $0ffres_emploi = 0ffresEmploi::create($validated);
+        return response()->json($0ffres_emploi, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(0ffresEmploi $0ffres_emploi): JsonResponse
+    {
+        return response()->json($0ffres_emploi);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, 0ffresEmploi $0ffres_emploi): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_offre' => 'sometimes|string|max:255',
+            'poste' => 'string|max:255',
+            'techno_offre' => 'string|max:255',
+            'liens_offre' => 'string|max:255',
+            'description_offre' => 'string|max:255',
+            'contact' => 'string|max:255',
+            'cv_id' => 'string|max:255'
+        ]);
+
+        $0ffres_emploi->update($validated);
+        return response()->json($0ffres_emploi);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(0ffresEmploi $0ffres_emploi): JsonResponse
+    {
+        $0ffres_emploi->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: ProjetController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Projet;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class ProjetController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $projetses = Projet::all();
+        return response()->json($projetses);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre' => 'string|max:255',
+            'images' => 'string|max:255',
+            'description' => 'string|max:255',
+            'statut' => 'string|max:255',
+            'category' => 'string|max:255',
+            'lien_github' => 'string|max:255',
+            'lien_demo' => 'string|max:255'
+        ]);
+
+        $projets = Projet::create($validated);
+        return response()->json($projets, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Projet $projets): JsonResponse
+    {
+        return response()->json($projets);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Projet $projets): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre' => 'string|max:255',
+            'images' => 'string|max:255',
+            'description' => 'string|max:255',
+            'statut' => 'string|max:255',
+            'category' => 'string|max:255',
+            'lien_github' => 'string|max:255',
+            'lien_demo' => 'string|max:255'
+        ]);
+
+        $projets->update($validated);
+        return response()->json($projets);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Projet $projets): JsonResponse
+    {
+        $projets->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: CompetenceController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Competence;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class CompetenceController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $competenceses = Competence::all();
+        return response()->json($competenceses);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'nom_comp' => 'string|max:255',
+            'niveau' => 'string|max:255',
+            'pourcentage' => 'integer',
+            'category' => 'string|max:255',
+            'type_comp' => 'string|max:255',
+            'description' => 'string|max:255',
+            'icon' => 'string|max:255'
+        ]);
+
+        $competences = Competence::create($validated);
+        return response()->json($competences, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Competence $competences): JsonResponse
+    {
+        return response()->json($competences);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Competence $competences): JsonResponse
+    {
+        $validated = $request->validate([
+            'nom_comp' => 'string|max:255',
+            'niveau' => 'string|max:255',
+            'pourcentage' => 'integer',
+            'category' => 'string|max:255',
+            'type_comp' => 'string|max:255',
+            'description' => 'string|max:255',
+            'icon' => 'string|max:255'
+        ]);
+
+        $competences->update($validated);
+        return response()->json($competences);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Competence $competences): JsonResponse
+    {
+        $competences->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: DiplomeController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Diplome;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class DiplomeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $diplomeses = Diplome::all();
+        return response()->json($diplomeses);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_diplome' => 'string|max:255',
+            'type_diplome' => 'string|max:255',
+            'annee_obtention' => 'string|max:255',
+            'centre_formateur' => 'string|max:255',
+            'domaine_etude' => 'string|max:255',
+            'description' => 'string|max:255'
+        ]);
+
+        $diplomes = Diplome::create($validated);
+        return response()->json($diplomes, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Diplome $diplomes): JsonResponse
+    {
+        return response()->json($diplomes);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Diplome $diplomes): JsonResponse
+    {
+        $validated = $request->validate([
+            'titre_diplome' => 'string|max:255',
+            'type_diplome' => 'string|max:255',
+            'annee_obtention' => 'string|max:255',
+            'centre_formateur' => 'string|max:255',
+            'domaine_etude' => 'string|max:255',
+            'description' => 'string|max:255'
+        ]);
+
+        $diplomes->update($validated);
+        return response()->json($diplomes);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Diplome $diplomes): JsonResponse
+    {
+        $diplomes->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: EsperienceController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Esperience;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class EsperienceController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $esperienceses = Esperience::all();
+        return response()->json($esperienceses);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'poste' => 'string|max:255',
+            'entreprise' => 'string|max:255',
+            'adresse_entreprise' => 'string|max:255',
+            'date_deut' => '',
+            'date_fin' => ''
+        ]);
+
+        $esperiences = Esperience::create($validated);
+        return response()->json($esperiences, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Esperience $esperiences): JsonResponse
+    {
+        return response()->json($esperiences);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Esperience $esperiences): JsonResponse
+    {
+        $validated = $request->validate([
+            'poste' => 'string|max:255',
+            'entreprise' => 'string|max:255',
+            'adresse_entreprise' => 'string|max:255',
+            'date_deut' => '',
+            'date_fin' => ''
+        ]);
+
+        $esperiences->update($validated);
+        return response()->json($esperiences);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Esperience $esperiences): JsonResponse
+    {
+        $esperiences->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+// Controller: ModelController
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Model;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class ModelController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): JsonResponse
+    {
+        $modelses = Model::all();
+        return response()->json($modelses);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'nom' => 'string|max:255',
+            'type' => 'string|max:255'
+        ]);
+
+        $models = Model::create($validated);
+        return response()->json($models, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Model $models): JsonResponse
+    {
+        return response()->json($models);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Model $models): JsonResponse
+    {
+        $validated = $request->validate([
+            'nom' => 'string|max:255',
+            'type' => 'string|max:255'
+        ]);
+
+        $models->update($validated);
+        return response()->json($models);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Model $models): JsonResponse
+    {
+        $models->delete();
+        return response()->json(null, 204);
+    }
+}
+
+
+==================================================
+# ROUTES API (routes/api.php)
+==================================================
+
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CvController;
+use App\Http\Controllers\0ffresEmploiController;
+use App\Http\Controllers\ProjetController;
+use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\DiplomeController;
+use App\Http\Controllers\EsperienceController;
+use App\Http\Controllers\ModelController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// Routes pour User
+Route::apiResource('users', UserController::class);
+
+// Routes pour cv
+Route::apiResource('cvs', CvController::class);
+
+// Routes pour 0ffres_emploi
+Route::apiResource('0ffres_emplois', 0ffresEmploiController::class);
+
+// Routes pour projets
+Route::apiResource('projetses', ProjetController::class);
+
+// Routes pour competences
+Route::apiResource('competenceses', CompetenceController::class);
+
+// Routes pour diplomes
+Route::apiResource('diplomeses', DiplomeController::class);
+
+// Routes pour esperiences
+Route::apiResource('esperienceses', EsperienceController::class);
+
+// Routes pour models
+Route::apiResource('modelses', ModelController::class);

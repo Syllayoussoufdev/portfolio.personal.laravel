@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Diplome; // Assurez-vous d'importer les modèles nécessaires
 use App\Models\Competence;
+use App\Models\Experience; // Assurez-vous d'importer les modèles nécessaires
+use App\Models\Projet;
 
 class LiaisonFactorySeeder extends Seeder
 {
@@ -17,6 +19,8 @@ class LiaisonFactorySeeder extends Seeder
     {
         $idsDiplomes = Diplome::all()->pluck('id')->toArray(); // Récupère tous les IDs des diplômes créés sous forme de tableau
         $idsCompetences = Competence::all()->pluck('id')->toArray(); // Récupère tous les IDs des compétences créées sous forme de tableau
+        $IdsExperiences = Experience::all()->pluck('id')->toArray(); // Récupère tous les IDs des expériences créées sous forme de tableau
+        $IdsProjet = Projet::all()->pluck('id')->toArray(); // Récupère tous les IDs des projets créés sous forme de tableau
 
         Competence::all()->each(function($competence) use ($idsDiplomes) { 
             $competence->diplome()->attach(array_slice($idsDiplomes, 0, rand(1, 5))); // Lier chaque compétence à tous les diplômes avec un niveau de maîtrise aléatoire
@@ -25,6 +29,16 @@ class LiaisonFactorySeeder extends Seeder
         Diplome::all()->each(function($diplome) use ($idsCompetences) {
             shuffle($idsCompetences); // Mélanger les IDs de compétences pour une sélection aléatoire
             $diplome->competence()->attach(array_slice($idsCompetences, 0, rand(1, 5))); // Attacher un nombre aléatoire de compétences (entre 1 et 5) à chaque diplôme
+        });
+
+        Experience::all()->each(function($experience) use ($idsCompetences) { 
+            shuffle($idsCompetences); // Mélanger les IDs de compétences pour une sélection aléatoire
+            $experience->competence()->attach(array_slice($idsCompetences, 0, rand(1, 3))); // Attacher un nombre aléatoire de compétences (entre 1 et 5) à chaque expérience
+        });
+
+        Projet::all()->each(function($projet) use ($idsCompetences) { 
+            shuffle($idsCompetences); // Mélanger les IDs de compétences pour une sélection aléatoire
+            $projet->competence()->attach(array_slice($idsCompetences, 0, rand(1, 4))); // Attacher un nombre aléatoire de compétences (entre 1 et 5) à chaque projet
         });
 
 
