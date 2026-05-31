@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('role', ['user', 'admin', 'visiteur'])->default('user'); // Ajout du champ 'role' avec une valeur par défaut de 'user'
             $table->string('name');
             $table->string('titre_professionnel')->nullable();
+            $table->string('slug')->unique(); // Champ slug pour les URL conviviales
             $table->string('biographie')->nullable();
             $table->text('a_propos')->nullable();
             $table->string('photo_profil')->nullable(); // Chemin vers la photo de profil venant d'être uploadée et sauvegardée dans 'storage/app/public/photos'

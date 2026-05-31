@@ -2,9 +2,9 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Sylla Youssouf. Tous droits réservés.</p>
-            <p>Développé à Abidjan</p>
-            <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
-            <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a>
+             <p>Développé à Abidjan</p>
+            {{--<a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+            <a href="{{ route('inscrire') }}" class="nav-link">S'inscrire</a> --}}
              {{-- <div class="social-links">
                 <a href="https://github.com/Syllayoussoufdev" class="social-link">
                     <i class="fab fa-github"></i>
@@ -20,6 +20,7 @@
                 </a>
                 <a href="https://syllayoussouf.com" class="social-link">
                     <i class="fas fa-globe"></i>
-                </a>
-        </div> --}}
+                </a>--}}
+        </div> 
+        
     </footer>

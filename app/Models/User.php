@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'titre_professionnel',
+        'slug', // Ajout du champ slug pour les URL conviviales
         'biographie',
         'photo_profil',
         'a_propos',

@@ -712,7 +712,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 .project-image {    
-    height: 500px;
+    height: 250px;
     width: 100%;
     overflow: hidden;
     position: relative;

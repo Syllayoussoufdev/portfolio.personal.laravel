@@ -35,7 +35,7 @@ class ProjetSeeder extends Seeder
             'slug' => 'systeme-gestion-recrutements',
             'statut' => 'Terminé',
             'category' => 'Web',
-            'images' => 'storage/projets/#', // Vous pouvez ajouter des chemins d'images fictifs ici si nécessaire
+            'images' => '', // Vous pouvez ajouter des chemins d'images fictifs ici si nécessaire
             'lien_github' => 'https://github.com/sylla-youssouf/recrutement-app',
             'lien_demo' => 'https://demo-recrutement-app.com'
         ]);
@@ -47,9 +47,9 @@ class ProjetSeeder extends Seeder
             'slug' => 'application-gestion-taches',
             'statut' => 'Terminé',
             'category' => 'Web',
-            'images' => 'storage/projets/#',
+            'images' => 'storage/projets/gestiontache.png',
             'lien_github' => '#',
-            'lien_demo' => '#'
+            'lien_demo' => '#',
         ]);
         Projet::factory()->create([
             'user_id' => 1, // Associe ces projets à l'utilisateur avec ID 1 (Sylla Youssouf)
@@ -59,7 +59,7 @@ class ProjetSeeder extends Seeder
             'slug' => 'site-freelance-personnel',
             'statut' => 'En cours',
             'category' => 'Web',
-            'images' => 'storage/projets/freelance2.png',
+            'images' => 'storage/projets/freelanceapp.png',
             'lien_github' => '#',
             'lien_demo' => '#'
         ]);
@@ -71,7 +71,7 @@ class ProjetSeeder extends Seeder
             'slug' => 'blogue-wordpress-headless-nextjs',
             'statut' => 'En cours',
             'category' => 'Web',
-            'images' => 'storage/projets/blogueperso.png',
+            'images' => 'storage/projets/blogperso.png',
             'lien_github' => '#',
             'lien_demo' => '#'
         ]);
@@ -83,7 +83,7 @@ class ProjetSeeder extends Seeder
             'slug' => 'site-web-full-services-point-sarl-abidjan',
             'statut' => 'Terminé',
             'category' => 'Web',
-            'images' => 'storage/projets/fsp2.png',
+            'images' => 'storage/projets/fsp.png',
             'lien_github' => '#',
             'lien_demo' => 'www.fullservicespoint.com'
         ]);

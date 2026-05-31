@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'titre_professionnel' => fake()->jobTitle(),
             'biographie' => fake()->paragraph(),
             'a_propos' => fake()->text(),
+            'slug' => fake()->unique()->slug(),
             'photo_profil' => fake()->imageUrl(200, 200, 'people'),
             'cv' => fake()->filePath(),
             'email_verified_at' => now(),
