@@ -288,55 +288,19 @@
             <h2 class="section-title">Formations & Certificats </h2>
             <div class="about-content">
                 <div class="about-text">
-
-                    {{-- <h3></h3>
-                    <div class="timeline">
+                    <div class="timeline">                        
+                        @foreach ($certificats_grouped as $year => $certificats)
                         <div class="timeline-item">
-                            $certificats = $owner->diplomes()->where('type', 'certificat')
-                            @foreach ($certificats->get() as $certificat)
-                                <div class="timeline-date">{{ $certificat->Annee_obtention }}</div>
-                                <div class="timeline-content">
-                                    <h4>{{ $certificat->Diplome }}</h4>
-                                    <p>{{ $certificat->Etablissement }}</p><br>
-                                    <p>{{ $certificat->Description }}</p>
-                                </div>
-                                
-                            @endforeach
-                            <div class="timeline-date">2025</div>
+                            <div class="timeline-date">{{ $year }}</div>
                             <div class="timeline-content">
-                                <h4>Openclasroom</h4>
-                                <p>Certificat PHP - Laravel</p><br>
-                                <p>Certificat python for begiming</p><br>
-                                <h4>Orange Digitale Center</h4>
-                                <p>Prompt Engineering Generative AI for Marketing & Advertising</p><br>
-                                <p>Web Development in React.js: Development Basics en partenaria avec Coursera</p><br>
-
-                            </div>
-                        </div> --}}
-                        <div class="timeline">
-                        <div class="timeline-item">2024</div>
-                            <div class="timeline-content">
-                                <h4>Certificat en Marketing digitale</h4>
-                                <p>Suite a une formations de 3 jors j'ai obtenue le Certificat, decerne par l'AJNV</p>
-                            </div>
-                            <div class="timeline-date">2025</div>
-                            <div class="timeline-content">
-                                <h4>Openclasroom</h4>
-                                <p>Certificat PHP - Laravel</p><br>
-                                <p>Certificat python for begiming</p><br>
-                                <h4>Orange Digitale Center</h4>
-                                <p>Prompt Engineering Generative AI for Marketing & Advertising</p><br>
-                                <p>Web Development in React.js: Development Basics en partenaria avec Coursera</p><br>
-
+                                @foreach ($certificats as $certificat)
+                                    <h4>{{ $certificat->nom_diplome }}</h4>
+                                    <p>{{ $certificat->centre_formateur }}</p><br>
+                                    <p>{{ $certificat->description }}</p>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2024</div>
-                            <div class="timeline-content">
-                                <h4>Certificat en Marketing digitale</h4>
-                                <p>Suite a une formations de 3 jors j'ai obtenue le Certificat, decerne par l'AJNV</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>  
                 </div>                    
             </div>

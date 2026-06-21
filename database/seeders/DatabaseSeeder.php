@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\ExperienceSeeder::class,
             \Database\Seeders\ProjetSeeder::class,
             \Database\Seeders\LiaisonFactorySeeder::class,
-            //\Database\Seeders\LiaisonFactorySeeder::class,
+            \Database\Seeders\LiaisonFactorySeeder::class,
             // Vous pouvez laisser les autres seeders commentés ou les supprimer si vous n'en avez pas besoin /
 
         ]);

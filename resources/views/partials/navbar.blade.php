@@ -2,14 +2,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#accueil">Sylla Y.</a>
+                <a href="{{ route('home') }}">Sylla Y.</a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#accueil" class="nav-link active">Accueil</a>
-                <a href="#apropos" class="nav-link">À propos</a>
-                <a href="#competences" class="nav-link">Compétences</a>
-                <a href="#projets" class="nav-link">Projets</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="{{ route('home') }}" class="nav-link active">Accueil</a>
+                <a href="{{ route('home') }}/#apropos" class="nav-link">À propos</a>
+                <a href="{{ route('home') }}/#competences" class="nav-link">Compétences</a>
+                <a href="{{ route('home') }}/#projets" class="nav-link">Projets</a>
+                <a href="{{ route('home') }}/#contact" class="nav-link">Contact</a>
                 @auth
                     <a class="nav-link" href={{route('admin.Competences.index')}}>CRUD-Comp</a>
                     <a class="nav-link" href={{ route('admin.diplomes.index') }}>CRUD-Diplômes / Certifications</a>

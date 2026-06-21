@@ -58,7 +58,7 @@
                                 @if($projet->lien_demo
                                     )
                                     <a href="{{ $projet->lien_demo }}" target="_blank" class="btn btn-primary">
-                                        <i class="bi bi-eye"></i> Voir
+                                        <i class="bi bi-eye"></i> En ligne
                                     </a>
                                 @endif
                                 <a href="{{ route('projects.show', $projet->id) }}" class="btn btn-small">
@@ -88,80 +88,5 @@
                 @empty
                     <p>Aucun projet disponible.</p>
                 @endforelse
-                {{-- <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Système de gestion des recrutements</h3>
-                        <p>Plateforme complète pour gérer les candidatures et processus de recrutement.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Bootstrap</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-small">Voir en ligne</a>
-                            <a href="https://github.com/Syllayoussoufdev" class="btn btn-outline">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Plateforme de formation</h3>
-                        <p>Site WordPress personnalisé pour cours en ligne et gestion d'étudiants.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">WordPress</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-small">Voir en ligne</a>
-                            <a href="https://github.com/Syllayoussoufdev" class="btn btn-outline">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Application mobile Flutter</h3>
-                        <p>Application de démonstration avec interface utilisateur moderne et responsive.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Dart</span>
-                            <span class="tech-tag">Firebase</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-small">Démo</a>
-                            <a href="https://github.com/Syllayoussoufdev" class="btn btn-outline">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Dashboard utilisateur</h3>
-                        <p>Interface d'administration responsive avec graphiques et gestion de données.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-small">Voir en ligne</a>
-                            <a href="https://github.com/Syllayoussoufdev" class="btn btn-outline">GitHub</a>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>

@@ -46,7 +46,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/{id}', [HomeController::class, 'index'])->name('home'); // Route pour afficher le CV d'un utilisateur spécifique (ex: /1 pour l'utilisateur avec ID 1)
+Route::get('/{slug}', [HomeController::class, 'index'])->name('home'); // Route pour afficher le CV d'un utilisateur spécifique (ex: /1 pour l'utilisateur avec ID 1)
 Route::get('/contacts', [ContactController::class, 'index'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('Mesage.store');
 Route::get('/projets', [ProjetController::class, 'index'])->name('projets');
