@@ -58,7 +58,7 @@
                                 @if($projet->lien_demo
                                     )
                                     <a href="{{ $projet->lien_demo }}" target="_blank" class="btn btn-primary">
-                                        <i class="bi bi-eye"></i> Voir
+                                        <i class="bi bi-eye"></i> En ligne
                                     </a>
                                 @endif
                                 <a href="{{ route('projects.show', $projet->id) }}" class="btn btn-small">
