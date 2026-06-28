@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProjetController;
 use App\Http\Controllers\ResumeController;    
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Artisan;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -18,10 +19,17 @@ use App\Http\Controllers\ContactController;
 // Les utilisateurs connectés peuvent voir leur propre CV et accéder à une page de profil, mais pas accéder au dashboard admin.
 // Les administrateurs peuvent accéder à toutes les pages, y compris le dashboard admin pour gérer les CVs, les compétences, les expériences, etc.
 
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {    
+    // Route::view('profile.dashboard_admin')->name('dashboard2');
+    Route::get('/dashboard2', function () {
+        return view('dashboard_admin');
+    })->name('dashboard2');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+ 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -41,9 +49,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Tu feras la même chose pour diplômes plus tard
     Route::resource('diplomes', DiplomeController::class);
 });
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {    
-    Route::view('/dashboard/2', 'dashboard_admin')->name('dashboard2');
-});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/{slug}', [HomeController::class, 'index'])->name('home'); // Route pour afficher le CV d'un utilisateur spécifique (ex: /1 pour l'utilisateur avec ID 1)
@@ -51,3 +56,22 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('Mesage.store');
 Route::get('/projets', [ProjetController::class, 'index'])->name('projets');
 Route::get('/projects/{slug}', [ProjetController::class, 'show'])->name('projects.show');
+
+$secret = 'fsp2025deploy';
+
+Route::prefix($secret)->group(function () {
+    Route::get('/migrate', function () {
+        Artisan::call('migrate:force');
+        return "Migration : " . Artisan::output();
+    });
+    Route::get('/link', function () {
+        Artisan::call('storage:link');
+        return "Storage lié !";
+    });
+    Route::get('/clear', function () {
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        return "Caches vidés !";
+    });
+});
