@@ -2,11 +2,13 @@ services:
   # Ton application Laravel
   app:
     build: .
+    container_name: portfolio-app
     ports:
       - "8080:80" # Ton site sera sur http://localhost:8080
       - "5173:5173" # Ajoute cette ligne pour exposer le port de Vite
     volumes:
-      - C:/Projets/vitrine/portfolio:/var/www/html
+      - ./:/var/www/html
+      - /var/www/html/vendor  # <--- CETTE LIGNE SAUVE TOUT pour éviter de réinstaller les dépendances à chaque fois
 
     networks:
       - laravel-network
@@ -15,15 +17,15 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE} # Il va lire ton fichier .env
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: portfolio_db # Il va lire ton fichier .env
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - laravel-network
 
   # phpMyAdmin pour gérer ta base de données via une interface web
   phpmyadmin:
     image: phpmyadmin
-    container_name: cvcrud-phpmyadmin
+    container_name: portfolio-myadmin
     links:
       - mysql
     environment:
